@@ -34,8 +34,24 @@ model TimeSignal {
 }
 
 model GuildSetting {
-  guildId       String  @id
-  muteRoleId    String?
-  protectDm     Boolean @default(false)
-  protectInvite Boolean @default(false)
+  guildId        String  @id
+  muteRoleId     String?
+  protectDm      Boolean @default(false)
+  protectInvite  Boolean @default(false)
+  
+  welcomeChannelId String?
+  welcomeMessage   String?
+  leaveChannelId   String?
+  leaveMessage     String?
+  
+  logChannelId     String?
+}
+
+model Warning {
+  id           Int      @id @default(autoincrement())
+  guildId      String
+  targetUserId String
+  moderatorId  String
+  reason       String
+  createdAt    DateTime @default(now())
 }

@@ -59,11 +59,19 @@ module.exports = {
             console.log('スラッシュコマンドの登録を開始します...');
             const commandsData = client.commands.map(cmd => cmd.data.toJSON());
             
-            await client.application.commands.set(commandsData);
+            // グローバルコマンド登録
+            // await client.application.commands.set(commandsData);
+
+            // サーバーごとに登録するほうが速い
+            for (const [guildId, guild] of client.guilds.cache) {
+                await guild.commands.set(commandsData).catch(err => {
+                    console.error(`サーバー(${guildId})への登録に失敗しました:`, err.message);
+                });
+            }
             
-            console.log(`[Success] ${commandsData.length}個のスラッシュコマンドの登録が完了しました。`);
+            console.log(`${commandsData.length}個のスラッシュコマンドをサーバーに登録しました。`);
         } catch (error) {
-            console.error('[Error] スラッシュコマンドの登録中にエラーが発生しました:', error);
+            console.error('スラッシュコマンドの登録中にエラーが発生しました:', error);
         }
     },
 };

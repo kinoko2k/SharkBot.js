@@ -1,0 +1,14 @@
+# 使用箇所: src/events/ready.js (起動通知を送信するチャンネル)
+startupLogChannelId: "channel-id"
+
+# 使用箇所: src/commands/bot.js (Pingの測定ログを送信するチャンネル)
+pingLogChannelId: "channel-id"
+
+# 使用箇所: src/commands/bot.js (オーナーのユーザーID)
+ownerId: "owner-id"
+
+# 使用箇所: src/commands/bot.js (サポートサーバーのID)
+supportGuildId: "support-guild-id"
+
+# 使用箇所: src/commands/bot.js (モデレーターのロールID)
+modRoleId: "role-id"

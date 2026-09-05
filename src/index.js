@@ -52,6 +52,9 @@ if (fs.existsSync(commandsPath)) {
 (async () => {
     client.db = await connectDatabase();
 
+    const { startTimeSignalTask } = require('./tasks/timeSignalTask');
+    startTimeSignalTask(client);
+
     const token = process.env.ENV_MODE === 'beta' ? process.env.BETA_TOKEN : process.env.DISCORD_TOKEN;
 
     if (!token || token === 'MAIN_BOT_TOKEN') {

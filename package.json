@@ -17,6 +17,10 @@
     "mongoose": "^8.2.1",
     "sqlite3": "^5.1.7",
     "mysql2": "^3.9.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
   }
 }

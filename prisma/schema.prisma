@@ -1,0 +1,20 @@
+// This is your Prisma schema file.
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Counting {
+  guildId        String
+  channelId      String
+  now            Int      @default(0)
+  resetOnMistake Boolean  @default(true)
+
+  @@id([guildId, channelId])
+}

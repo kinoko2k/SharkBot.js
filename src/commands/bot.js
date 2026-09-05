@@ -1,3 +1,4 @@
+// sharkbot.py/cogs/help.py
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField } = require('discord.js');
 const os = require('os');
 const fs = require('fs');

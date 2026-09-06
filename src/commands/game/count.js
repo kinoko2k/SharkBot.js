@@ -1,6 +1,6 @@
 // sharkbot.py/cogs/count.py
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
-const { setCountingData, deleteCountingData, getCountingData } = require('../utils/dbHelper');
+const { setCountingData, deleteCountingData, getCountingData } = require('../../utils/dbHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()

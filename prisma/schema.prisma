@@ -55,3 +55,85 @@ model Warning {
   reason       String
   createdAt    DateTime @default(now())
 }
+
+model UserEconomy {
+  userId   String   @id
+  wallet   Int      @default(0)
+  bank     Int      @default(0)
+  lastWork DateTime?
+}
+
+model UserLevel {
+  guildId String
+  userId  String
+  xp      Int    @default(0)
+  level   Int    @default(1)
+
+  @@id([guildId, userId])
+}
+
+model GuildCredit {
+  guildId String
+  userId  String
+  credit  Int    @default(100)
+
+  @@id([guildId, userId])
+}
+
+model LevelingSetting {
+  guildId String @id
+}
+
+model LevelingUpAlertChannel {
+  guildId   String @id
+  channelId String
+}
+
+model LevelingUpRole {
+  guildId String
+  level   Int
+  roleId  String
+
+  @@id([guildId, level])
+}
+
+model LevelingUpTiming {
+  guildId String @id
+  timing  Int    @default(100)
+}
+
+model BANRanking {
+  userId    String @id
+  name      String
+  avatar    String
+  ban_count Int    @default(0)
+}
+
+model MessageDeleteRanking {
+  userId       String @id
+  name         String
+  avatar       String
+  delete_count Int    @default(0)
+}
+
+model MessageEditRanking {
+  userId     String @id
+  name       String
+  avatar     String
+  edit_count Int    @default(0)
+}
+
+model CommandRunRanking {
+  userId    String @id
+  run_count Int    @default(0)
+}
+
+model BumpRanking {
+  userId     String @id
+  bump_count Int    @default(0)
+}
+
+model MentionRanking {
+  userId String @id
+  count  Int    @default(0)
+}

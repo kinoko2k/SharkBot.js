@@ -12,6 +12,14 @@ module.exports = {
             }
 
             try {
+                if (interaction.user && !interaction.user.bot) {
+                    await client.db.commandRunRanking.upsert({
+                        where: { userId: interaction.user.id },
+                        update: { run_count: { increment: 1 } },
+                        create: { userId: interaction.user.id, run_count: 1 }
+                    }).catch(() => {});
+                }
+                
                 await command.execute(interaction, client);
             } catch (error) {
                 console.error(`${interaction.commandName} の実行中にエラーが発生しました。`);

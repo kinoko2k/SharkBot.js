@@ -1,6 +1,6 @@
 // sharkbot.py/cogs/time_signal.py
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
-const { getClosestMessage, getRandomTopic } = require('../tasks/timeSignalTask');
+const { getClosestMessage, getRandomTopic } = require('../../tasks/timeSignalTask');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -46,7 +46,6 @@ module.exports = {
                 try {
                     await client.db.timeSignal.delete({ where: { guildId } });
                 } catch (e) {
-                    // 存在しない場合は無視
                 }
                 
                 return interaction.editReply({

@@ -7,8 +7,16 @@ module.exports = {
         if (oldMessage.content === newMessage.content) return; // 埋め込み追加などの更新は無視
 
         try {
+            if (!newMessage.author.bot) {
+                await client.db.messageEditRanking.upsert({
+                    where: { userId: newMessage.author.id },
+                    update: { edit_count: { increment: 1 }, name: newMessage.author.username, avatar: newMessage.author.displayAvatarURL() },
+                    create: { userId: newMessage.author.id, edit_count: 1, name: newMessage.author.username, avatar: newMessage.author.displayAvatarURL() }
+                });
+            }
+
             const settings = await client.db.guildSetting.findUnique({
-                where: { guildId: oldMessage.guild.id }
+                where: { guildId: newMessage.guild.id }
             });
 
             if (!settings || !settings.logChannelId) return;

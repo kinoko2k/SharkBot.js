@@ -4,7 +4,7 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
-const config = yaml.parse(fs.readFileSync(path.join(__dirname, '../../config.yml'), 'utf8'));
+const config = yaml.parse(fs.readFileSync(path.join(__dirname, '../../../config.yml'), 'utf8'));
 
 function getCpuUsage() {
     const cpus = os.cpus();

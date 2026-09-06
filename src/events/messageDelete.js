@@ -6,6 +6,14 @@ module.exports = {
         if (!message.guild || message.author?.bot) return;
 
         try {
+            if (!message.author.bot) {
+                await client.db.messageDeleteRanking.upsert({
+                    where: { userId: message.author.id },
+                    update: { delete_count: { increment: 1 }, name: message.author.username, avatar: message.author.displayAvatarURL() },
+                    create: { userId: message.author.id, delete_count: 1, name: message.author.username, avatar: message.author.displayAvatarURL() }
+                });
+            }
+
             const settings = await client.db.guildSetting.findUnique({
                 where: { guildId: message.guild.id }
             });
